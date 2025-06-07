@@ -1,0 +1,66 @@
+[
+   {
+      "nr_rezerwacji": 0,
+      "nr_miejsca": 29,
+      "id_klienta": 0,
+      "data_rezerwacji": "07/06/25 07:16",
+      "czy_anulowana": true,
+      "data_anulacji": "07/06/25 07:21"
+   },
+   {
+      "nr_rezerwacji": 1,
+      "nr_miejsca": 2,
+      "id_klienta": 0,
+      "data_rezerwacji": "07/06/25 07:21",
+      "czy_anulowana": true,
+      "data_anulacji": "07/06/25 07:27"
+   },
+   {
+      "nr_rezerwacji": 2,
+      "nr_miejsca": 1,
+      "id_klienta": 0,
+      "data_rezerwacji": "07/06/25 07:22",
+      "czy_anulowana": false,
+      "data_anulacji": ""
+   },
+   {
+      "nr_rezerwacji": 3,
+      "nr_miejsca": 25,
+      "id_klienta": 0,
+      "data_rezerwacji": "07/06/25 07:22",
+      "czy_anulowana": true,
+      "data_anulacji": "07/06/25 07:27"
+   },
+   {
+      "nr_rezerwacji": 4,
+      "nr_miejsca": 7,
+      "id_klienta": 0,
+      "data_rezerwacji": "07/06/25 07:27",
+      "czy_anulowana": false,
+      "data_anulacji": ""
+   },
+   {
+      "nr_rezerwacji": 5,
+      "nr_miejsca": 12,
+      "id_klienta": 0,
+      "data_rezerwacji": "07/06/25 07:28",
+      "czy_anulowana": false,
+      "data_anulacji": ""
+   },
+   {
+      "nr_rezerwacji": 6,
+      "nr_miejsca": 23,
+      "id_klienta": 0,
+      "data_rezerwacji": "07/06/25 07:28",
+      "czy_anulowana": true,
+      "data_anulacji": "07/06/25 07:30"
+   },
+   {
+      "nr_rezerwacji": 7,
+      "nr_miejsca": 26,
+      "id_klienta": 0,
+      "data_rezerwacji": "07/06/25 07:29",
+      "czy_anulowana": true,
+      "data_anulacji": "07/06/25 07:30"
+   }
+]

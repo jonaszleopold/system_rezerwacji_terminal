@@ -1,0 +1,16 @@
+[
+   {
+      "id_klienta": 0,
+      "nazwa_uzytkownika": "jonmaz1",
+      "_haslo": "jonmaz1",
+      "imie": "Jonasz",
+      "nazwisko": "Mazur"
+   },
+   {
+      "id_klienta": 1,
+      "nazwa_uzytkownika": "gman",
+      "_haslo": "gman123",
+      "imie": "gman",
+      "nazwisko": "mgman"
+   }
+]
