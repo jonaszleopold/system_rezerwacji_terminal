@@ -2,12 +2,12 @@
    {
       "nr_miejsca": 1,
       "rzad": 1,
-      "czy_wolne": false,
+      "czy_wolne": true,
       "cena": 300,
       "dodatkowa_oplata": 100,
       "czy_dla_niepelnosprawnych": false,
       "czy_vip": true,
-      "id_klienta": 0
+      "id_klienta": 10000
    },
    {
       "nr_miejsca": 2,
@@ -17,7 +17,7 @@
       "dodatkowa_oplata": 100,
       "czy_dla_niepelnosprawnych": false,
       "czy_vip": true,
-      "id_klienta": 0
+      "id_klienta": 10000
    },
    {
       "nr_miejsca": 3,
@@ -62,12 +62,12 @@
    {
       "nr_miejsca": 7,
       "rzad": 1,
-      "czy_wolne": false,
+      "czy_wolne": true,
       "cena": 300,
       "dodatkowa_oplata": 100,
       "czy_dla_niepelnosprawnych": false,
       "czy_vip": true,
-      "id_klienta": 0
+      "id_klienta": 10000
    },
    {
       "nr_miejsca": 8,
@@ -109,11 +109,11 @@
    {
       "nr_miejsca": 12,
       "rzad": 2,
-      "czy_wolne": false,
+      "czy_wolne": true,
       "cena": 300,
       "czy_dla_niepelnosprawnych": false,
       "czy_vip": false,
-      "id_klienta": 0
+      "id_klienta": 10000
    },
    {
       "nr_miejsca": 13,
@@ -212,7 +212,7 @@
       "cena": 300,
       "czy_dla_niepelnosprawnych": false,
       "czy_vip": false,
-      "id_klienta": 0
+      "id_klienta": 10000
    },
    {
       "nr_miejsca": 24,
@@ -230,7 +230,7 @@
       "cena": 300,
       "czy_dla_niepelnosprawnych": true,
       "czy_vip": false,
-      "id_klienta": 0,
+      "id_klienta": 10000,
       "dodatkowe_udogodnienia": {
          "Parking": false,
          "Asystent": false
@@ -243,7 +243,7 @@
       "cena": 300,
       "czy_dla_niepelnosprawnych": true,
       "czy_vip": false,
-      "id_klienta": 0,
+      "id_klienta": 10000,
       "dodatkowe_udogodnienia": {
          "Parking": false,
          "Asystent": false
@@ -282,7 +282,7 @@
       "cena": 300,
       "czy_dla_niepelnosprawnych": true,
       "czy_vip": false,
-      "id_klienta": 0,
+      "id_klienta": 10000,
       "dodatkowe_udogodnienia": {
          "Parking": false,
          "Asystent": false

@@ -18,7 +18,7 @@ class MiejsceTeatralne:
     def informacje(self):
         print('-'*35)
         print(f'Numer miejsca: {self.nr_miejsca},\nRząd: {self.rzad},\nCena: {self.cena}PLN')
-        if self.czy_wolne == False:
+        if not self.czy_wolne:
             print('Miejsce zajęte\n')
         if self.czy_vip:
             print('Ekskluzywne miejsce VIP w pierwszym rzędzie!\n')
@@ -35,8 +35,7 @@ class MiejsceZwykle(MiejsceTeatralne):
 class MiejsceVip(MiejsceTeatralne):
     def __init__(self, nr_miejsca, rzad, czy_wolne, cena, dodatkowa_oplata, czy_dla_niepelnosprawnych, czy_vip,
                  id_klienta):
-        MiejsceTeatralne.__init__(self, nr_miejsca, rzad, czy_wolne, cena, czy_dla_niepelnosprawnych, czy_vip,
-                                  id_klienta)
+        MiejsceTeatralne.__init__(self, nr_miejsca, rzad, czy_wolne, cena, czy_dla_niepelnosprawnych, czy_vip, id_klienta)
         self.dodatkowa_oplata = 80
         self.cena = cena + self.dodatkowa_oplata
 
@@ -102,8 +101,6 @@ class MiejsceDlaNiepelnosprawnych(MiejsceTeatralne):
             print('-' * 35)
         print(f'Miejsce zarezerwowane!')
         print('-' * 35)
-
-
 
 
 class Klient:
@@ -179,7 +176,7 @@ class Teatr:
                 self.miejsca_w_teatrze[i].informacje()
 
     def zaloguj(self, nazwa_uzytkownika, _haslo):
-        for i in range(self.liczba_klientow_w_pliku):
+        for i in range(len(self.klienci)):
             if nazwa_uzytkownika == self.klienci[i].nazwa_uzytkownika and _haslo == self.klienci[i].haslo:
                 # updejtuje obiekt zalogowanego klienta
                 self.zalogowany_klient = Klient(self.klienci[i].id_klienta,
@@ -195,10 +192,6 @@ class Teatr:
             print('-' * 35)
 
     def wyloguj(self):
-        self.zalogowany_klient.id_klienta = 'domyslne'
-        self.zalogowany_klient.imie = 'domyslne'
-        self.zalogowany_klient.nazwisko = 'domyslne'
-        self.zalogowany_klient.nazwa_uzytkownika = 'domyslne'
         self.czy_klient_zalogowany = False
 
 
@@ -261,11 +254,14 @@ class Teatr:
                 elif self.miejsca_w_teatrze[nr_wpisany_miejsca - 1].czy_dla_niepelnosprawnych:
                     self.miejsca_w_teatrze[nr_wpisany_miejsca - 1].zamow_udogodnienia()
                 else:
+                    print('-' * 35)
                     print(f'\nMiejsce {nr_wpisany_miejsca} zarezerwowane!\n')
+                    print('-' * 35)
                     return 0
             else:
-                komunikat_miejsce_zajete = f'\nMiejsce {nr_wpisany_miejsca} już zajęte!\n'
-                print(komunikat_miejsce_zajete)
+                print('-' * 35)
+                print(f'\nMiejsce {nr_wpisany_miejsca} już zajęte!\n')
+                print('-' * 35)
                 return 20
         else:
             print('-' * 35)
@@ -299,7 +295,7 @@ class Teatr:
         if self.czy_klient_zalogowany:
             # porównuje id obiektu klienta z id klienta w liscie z numerami rezerwacji, jesli sie zgadza to nadpisuje element 'czy_anulowane'
             try:
-                for i in range(self.liczba_rezerwacji_w_pliku):
+                for i in range(len(self.wszystkie_rezerwacje_z_pliku)):
                     if self.zalogowany_klient.id_klienta == self.rezerwacje[i].id_klienta and numer_rezerwacji_do_anulowania == self.rezerwacje[i].nr_rezerwacji:
                         self.wszystkie_rezerwacje_z_pliku[i]['czy_anulowana'] = True
                         self.wszystkie_rezerwacje_z_pliku[i]['data_anulacji'] = czas_anulacji
@@ -315,112 +311,22 @@ class Teatr:
 
                         self.rezerwacje[i].czy_anulowana = True
                         self.rezerwacje[i].data_anulacji = czas_anulacji
-                        komunikat_anulowano_rezerwacje = 'Rezerwacja anulowana!'
-                        print(komunikat_anulowano_rezerwacje)
+                        print('-' * 35)
+                        print('Rezerwacja anulowana!')
+                        print('-' * 35)
                         return 0
             except:
-                komunikat_bledny_nr_rezerwacji = 'Bledny numer rezerwacji!'
-                print(komunikat_bledny_nr_rezerwacji)
+                print('-' * 35)
+                print('Bledny numer rezerwacji!')
+                print('-' * 35)
                 return 31
         else:
-            komunikat_nie_zalogowany = 'Użytkownik nie zalogowany z ID (ANULACJA)'
-            print(komunikat_nie_zalogowany)
-            return komunikat_nie_zalogowany
+            print('-' * 35)
+            print('Użytkownik nie zalogowany z ID (ANULACJA)')
+            print('-' * 35)
+            return 32
 
-# def reset_miejsca(self, podana_liczba_miejsc):
-#     wszystkie_miejsca = []
-#
-#     # for i in range(podana_liczba_miejsc)
-#     #     # VIP
-#     #
-#     #     # Dla Niepelnosprawnych
-#     #
-#     #     # Zwykle
-
-# functions:
-# tworzy plik klienci / nadpisuje go pustą tabelą
-def reset_klienci():
-    default = []
-    with open("klienci.json", "w") as outfile:
-        json.dump(default, outfile, indent=3)
-
-# tworzy plik rezerwacje / nadpisuje go pustą tabelą
-def reset_rezerwacje():
-    default = []
-    with open("rezerwacje.json", "w") as outfile:
-        json.dump(default, outfile, indent=3)
-
-# tworzy plik miejsca / nadpisuje go gotowymi miejscami
-def reset_miejsca():
-    wszystkie_miejsca = []
-
-    # tworzy pętle na 40 miejsc i dopisuje do kazdego slownika odpowiadajacemu rzedowi, konkretne miejsca z konkretnymi wlasciwosciami
-    for i in range(40):
-        # tworzy rząd VIP:
-        if i <= 7:
-            wszystkie_miejsca.append({
-                "nr_miejsca": i + 1,
-                "rzad": 1,
-                "czy_wolne": True,
-                "cena": 300,
-                "dodatkowa_oplata": 100,
-                "czy_dla_niepelnosprawnych": False,
-                "czy_vip": True,
-                "id_klienta": 10000
-            })
-        if i >= 8 and i <= 16:
-            wszystkie_miejsca.append({
-                "nr_miejsca": i + 1,
-                "rzad": 2,
-                "czy_wolne": True,
-                "cena": 300,
-                # "dodatkowa_oplata": 0,
-                "czy_dla_niepelnosprawnych": False,
-                "czy_vip": False,
-                "id_klienta": 10000
-            })
-        if i >= 17 and i <= 23:
-            wszystkie_miejsca.append({
-                "nr_miejsca": i + 1,
-                "rzad": 3,
-                "czy_wolne": True,
-                "cena": 300,
-                # "dodatkowa_oplata": 0,
-                "czy_dla_niepelnosprawnych": False,
-                "czy_vip": False,
-                "id_klienta": 10000
-            })
-        # tworzy rząd dla miejsc z udogodnieniami dla osób niepełnosprawnych
-        if i >= 24 and i <= 31:
-            wszystkie_miejsca.append({
-                "nr_miejsca": i + 1,
-                "rzad": 4,
-                "czy_wolne": True,
-                "cena": 300,
-                # "dodatkowa_oplata": 0,
-                "czy_dla_niepelnosprawnych": True,
-                "czy_vip": False,
-                "id_klienta": 10000,
-                "dodatkowe_udogodnienia": {'Parking': False, 'Asystent': False}
-            })
-        if i >= 32 and i <= 40:
-            wszystkie_miejsca.append({
-                "nr_miejsca": i + 1,
-                "rzad": 5,
-                "czy_wolne": True,
-                "cena": 300,
-                # "dodatkowa_oplata": 0,
-                "czy_dla_niepelnosprawnych": False,
-                "czy_vip": False,
-                "id_klienta": 10000
-            })
-
-    with open("miejsca.json", "w") as outfile:
-        json.dump(wszystkie_miejsca, outfile, indent=3)
 
 def get_date_and_time():
     data_czas = datetime.datetime.now().strftime("%d/%m/%y %H:%M")
     return data_czas
-
-# reset_rezerwacje()
-# reset_miejsca()

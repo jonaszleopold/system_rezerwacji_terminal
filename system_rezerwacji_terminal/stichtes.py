@@ -18,21 +18,13 @@ def zostan_menu():
         if wybor in menu_indexes:
             sprawdz_wybor(wybor)
 
-def zostan_rezerwacja():
-
-    czy_zostac_rezerwacja = True
-    while czy_zostac_rezerwacja:
-        print('-' * 35)
-        print('Niewłaściwy format numeru rezerwacji. Podaj numer rezerwacji w formacie liczbowym (np.125).')
-
-
 # GŁÓWNA FUNKCJA
 def sprawdz_wybor(wybor):
     #ZALOGUJ:
     if  wybor == '1':
         if teatr.czy_klient_zalogowany:
                 print('-' * 35)
-                print('Już jesteś zalogowany!')
+                print(f'Już jesteś zalogowany jako {teatr.zalogowany_klient.nazwa_uzytkownika}!')
                 print('-' * 35)
                 zostan_menu()
         else:
@@ -90,7 +82,7 @@ def sprawdz_wybor(wybor):
                 print('-' * 35)
                 print('Nazwa użykownika już zajęta. Wymyśl inną!')
                 print('-' * 35)
-                zostan_rezerwacja()
+                zostan_menu()
             print('-' * 35)
             print('Klient zarejestrowany!')
             print('-' * 35)
@@ -124,6 +116,7 @@ def sprawdz_wybor(wybor):
     #POKAZ MOJE REZERWACJE
     elif wybor == '5':
         print('-' * 35)
+        print('       Oto twoje rezerwacje:')
         teatr.pokaz_rezerwacje()
     #ANULUJ REZERWACJE
     elif wybor == '6':
@@ -138,7 +131,7 @@ def sprawdz_wybor(wybor):
             while True:
                 try:
                     nr_rezerwacji_do_anulacji = int(input())
-                    assert 0 <= nr_rezerwacji_do_anulacji <= int(teatr.liczba_rezerwacji_w_pliku) + 1
+                    assert 0 <= nr_rezerwacji_do_anulacji <= int(len(teatr.rezerwacje)) + 1
                     break
                 except (AssertionError, ValueError):
                     print('-' * 35)
@@ -182,15 +175,6 @@ menu = ['Menu:',
          '8.Zamknij']
 
 opcje = str(menu).strip('[').strip(']').replace(',', '\n').replace('\'', '')
-
-menu_indexes = ['1','2','3','4','5','6','7','8'] # musi byc w str ponieważ pozniej sprawdzam input z klawiatury
+menu_indexes = ['1','2','3','4','5','6','7','8'] # musi byc w str ponieważ pozniej sprawdza input
 
 zostan_menu()
-
-
-
-
-
-
-
-
